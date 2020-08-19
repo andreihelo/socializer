@@ -16,22 +16,24 @@ defmodule Socializer.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
-      alias Socializer.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import Socializer.DataCase
+
+      alias Socializer.Repo
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Socializer.Repo)
+    :ok = Sandbox.checkout(Socializer.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Socializer.Repo, {:shared, self()})
+      Sandbox.mode(Socializer.Repo, {:shared, self()})
     end
 
     :ok

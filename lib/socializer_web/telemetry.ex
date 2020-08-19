@@ -1,4 +1,8 @@
 defmodule SocializerWeb.Telemetry do
+  @moduledoc """
+  Defines a module for diverse metrics.
+  """
+
   use Supervisor
   import Telemetry.Metrics
 
